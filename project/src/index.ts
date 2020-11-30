@@ -1,19 +1,19 @@
-const a: object = {
-    a: "",
-    b: 1
-}
-
-const b: object = {
-    c: ""
-}
-
-const c: object = {...a, ...b};
-
-const r: Readonly<Record<"a" | "b", number>> = {
-    a: 0,
-    b: 1
-}
-
-type numberReadonlyArray = Readonly<Array<number>>
-
-r["a"] = 2
+/**
+ * Record
+ */
+export const myRecord: Record<string, string> = {
+    a: "a",
+    b: "b",
+  };
+  
+  export const myRecord2: Record<string, string> = {
+    // @ts-expect-error
+    a: 1,
+    b: "b",
+  };
+  
+  export const myRecord3: Record<"b" | "c", string> = {
+    // @ts-expect-error
+    a: 1,
+    b: "b",
+  };
