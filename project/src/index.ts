@@ -18,7 +18,7 @@ export const myRecord: Record<string, string> = {
     b: "b",
   };
 
-  type numberReadonlyArray = Array<number>
+//  type numberReadonlyArray = Array<number>
 
   const myMap = new Map<{a: string, b: string}, string>();
 
