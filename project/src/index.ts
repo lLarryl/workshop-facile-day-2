@@ -1,33 +1,34 @@
-/**
- * Record
- */
-export const myRecord: Record<string, string> = {
-    a: "a",
-    b: "b",
-  };
-  
-  export const myRecord2: Record<string, string> = {
-    // @ts-expect-error
-    a: 1,
-    b: "b",
-  };
-  
-  export const myRecord3: Record<"b" | "c", string> = {
-    // @ts-expect-error
-    a: 1,
-    b: "b",
-  };
+interface ConsoleService {
+    ConsoleService: {
+        log: (message: string) => void
+    }
+}
 
-//  type numberReadonlyArray = Array<number>
+interface MathService {
+    MathService: {
+        add: (x: number, y: number) => number;
+    }
+}
 
-  const myMap = new Map<{a: string, b: string}, string>();
+function add3(C: MathService)
+{
+    return (x: number) => C.MathService.add(x, 3);
+}
 
-  const x = {a: "", b: ""};
+function AddAndPrint3(C: ConsoleService & MathService) {
+    const add3_ = add3(C);
+    return () => {
+        C.ConsoleService.log(`log: ${add3_(10)}`)
+    }
+}
 
-  myMap.set(x, "");
-  myMap.get(x);
-
-  /**
- * Set
- */
-export const mySet = new Set(["a", "b"]);
+AddAndPrint3({
+    MathService: {
+        add: (x, y) => x + y
+    },
+    ConsoleService: {
+        log: (x) => {
+            console.log(x);
+        }
+    }
+})
