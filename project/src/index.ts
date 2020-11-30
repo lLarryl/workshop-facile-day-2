@@ -26,3 +26,8 @@ export const myRecord: Record<string, string> = {
 
   myMap.set(x, "");
   myMap.get(x);
+
+  /**
+ * Set
+ */
+export const mySet = new Set(["a", "b"]);
